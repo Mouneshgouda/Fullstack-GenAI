@@ -201,19 +201,20 @@ This is a simple example showing how to use semantic HTML5 elements like `<heade
 </body>
 </html>
 ```
-<header>: Top section of the page, often for branding.
+# HTML5 Semantic Elements
 
-<nav>: Navigation links.
+This document provides a brief description of key semantic HTML5 tags used for structuring web pages.
 
-<main>: Main content of the document.
+## Semantic Tags Overview
 
-<article>: Independent piece of content (e.g., blog post).
+- **`<header>`**: Top section of the page, often for branding.
+- **`<nav>`**: Navigation links.
+- **`<main>`**: Main content of the document.
+- **`<article>`**: Independent piece of content (e.g., blog post).
+- **`<section>`**: Thematic grouping of content.
+- **`<aside>`**: Side content, such as a sidebar or ads.
+- **`<footer>`**: Bottom of the page, often with copyright.
 
-<section>: Thematic grouping of content.
-
-<aside>: Side content, such as a sidebar or ads.
-
-<footer>: Bottom of the page, often with copyrigh
   
 ## 🔵 CSS (Cascading Style Sheets)
 
