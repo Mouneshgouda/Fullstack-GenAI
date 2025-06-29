@@ -150,6 +150,71 @@ A complete reference for HTML and CSS basics — structured, styled, and simplif
 
 ---
 
+# HTML5 Semantic Tags Example
+
+This is a simple example showing how to use semantic HTML5 elements like `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, and `<footer>`.
+
+## Example Code
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Semantic Tags Example</title>
+</head>
+<body>
+
+  <header>
+    <h1>My Website</h1>
+    <p>Welcome to my site!</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <article>
+      <h2>Blog Post Title</h2>
+      <p>This is the content of the blog post.</p>
+    </article>
+
+    <section>
+      <h3>Related Articles</h3>
+      <p>Links or summaries of related content can go here.</p>
+    </section>
+  </main>
+
+  <aside>
+    <h3>About Me</h3>
+    <p>This is a short bio or sidebar content.</p>
+  </aside>
+
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+```
+<header>: Top section of the page, often for branding.
+
+<nav>: Navigation links.
+
+<main>: Main content of the document.
+
+<article>: Independent piece of content (e.g., blog post).
+
+<section>: Thematic grouping of content.
+
+<aside>: Side content, such as a sidebar or ads.
+
+<footer>: Bottom of the page, often with copyrigh
+  
 ## 🔵 CSS (Cascading Style Sheets)
 
 ---
