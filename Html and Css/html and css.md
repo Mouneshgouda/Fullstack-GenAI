@@ -1,17 +1,21 @@
 
-# 🌐 HTML + 🎨 CSS Basics Guide
+# 🌐 HTML + 🎨 CSS Full Beginner Guide
 
-A quick reference for learning HTML and CSS with clear, simple examples.
+A complete reference for HTML and CSS basics — structured, styled, and simplified.
 
 ---
 
-## 🟠 1. Basic HTML Structure
+## 🟠 HTML (HyperText Markup Language)
+
+---
+
+### 1. Basic Structure
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Page</title>
+    <title>My Website</title>
   </head>
   <body>
     <h1>Hello World</h1>
@@ -21,56 +25,104 @@ A quick reference for learning HTML and CSS with clear, simple examples.
 
 ---
 
-## 🟠 2. HTML Headings & Paragraphs
+### 2. Common HTML Elements
+
+#### Headings
 
 ```html
-<h1>Main Heading</h1>
-<h2>Sub Heading</h2>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h6>Heading 6</h6>
+```
+
+#### Paragraphs & Line Breaks
+
+```html
 <p>This is a paragraph.</p>
+<br />
 ```
 
----
-
-## 🟠 3. HTML Links & Images
+#### Horizontal Rule
 
 ```html
-<a href="https://example.com">Visit Example</a>
-<img src="image.jpg" alt="Description" />
+<hr />
 ```
 
 ---
 
-## 🟠 4. HTML Lists
+### 3. Text Formatting
+
+```html
+<b>Bold</b>
+<strong>Strong</strong>
+<i>Italic</i>
+<em>Emphasized</em>
+<u>Underline</u>
+<mark>Highlighted</mark>
+<small>Small text</small>
+<del>Deleted</del>
+<ins>Inserted</ins>
+<sub>Subscript</sub>
+<sup>Superscript</sup>
+```
+
+---
+
+### 4. Links, Images & Media
+
+```html
+<a href="https://example.com" target="_blank">Go to Example</a>
+<img src="image.jpg" alt="Description" width="200" />
+<video controls width="320">
+  <source src="movie.mp4" type="video/mp4">
+</video>
+<audio controls>
+  <source src="sound.mp3" type="audio/mpeg">
+</audio>
+```
+
+---
+
+### 5. Lists
 
 ```html
 <ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
+  <li>Unordered item</li>
 </ul>
 
 <ol>
-  <li>First</li>
-  <li>Second</li>
+  <li>Ordered item</li>
 </ol>
+
+<dl>
+  <dt>HTML</dt>
+  <dd>Markup Language</dd>
+</dl>
 ```
 
 ---
 
-## 🟠 5. HTML Forms
+### 6. Forms & Inputs
 
 ```html
-<form>
-  <input type="text" placeholder="Name" />
-  <input type="submit" value="Send" />
+<form action="/submit" method="post">
+  <input type="text" placeholder="Your Name" required />
+  <input type="email" />
+  <input type="password" />
+  <textarea></textarea>
+  <select>
+    <option>Option 1</option>
+  </select>
+  <input type="submit" />
 </form>
 ```
 
 ---
 
-## 🟠 6. HTML Table
+### 7. Tables
 
 ```html
-<table>
+<table border="1">
   <tr>
     <th>Name</th>
     <th>Age</th>
@@ -84,29 +136,37 @@ A quick reference for learning HTML and CSS with clear, simple examples.
 
 ---
 
-## 🔵 1. Basic CSS Syntax
+### 8. Semantic Tags
 
-```css
-selector {
-  property: value;
-}
+```html
+<header></header>
+<nav></nav>
+<main></main>
+<article></article>
+<section></section>
+<aside></aside>
+<footer></footer>
 ```
 
 ---
 
-## 🔵 2. Adding CSS to HTML
+## 🔵 CSS (Cascading Style Sheets)
+
+---
+
+### 1. Adding CSS
 
 **Inline:**
 
 ```html
-<p style="color: red;">Red Text</p>
+<h1 style="color: red;">Title</h1>
 ```
 
 **Internal:**
 
 ```html
 <style>
-  p { color: blue; }
+  h1 { color: blue; }
 </style>
 ```
 
@@ -118,34 +178,77 @@ selector {
 
 ---
 
-## 🔵 3. CSS Selectors
+### 2. CSS Syntax
 
 ```css
-/* Element selector */
-p { color: green; }
-
-/* Class selector */
-.box { padding: 10px; }
-
-/* ID selector */
-#header { font-size: 20px; }
-```
-
----
-
-## 🔵 4. CSS Box Model
-
-```css
-div {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid black;
+selector {
+  property: value;
 }
 ```
 
 ---
 
-## 🔵 5. CSS Flexbox
+### 3. Selectors
+
+```css
+*         /* All elements */
+p         /* Tag */
+.box      /* Class */
+#main     /* ID */
+div p     /* Descendant */
+h1, h2    /* Grouping */
+```
+
+---
+
+### 4. Colors & Background
+
+```css
+color: red;
+background-color: #eee;
+background-image: url("bg.jpg");
+```
+
+---
+
+### 5. Fonts & Text
+
+```css
+font-family: Arial;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+text-decoration: underline;
+line-height: 1.5;
+```
+
+---
+
+### 6. Box Model
+
+```css
+div {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  margin: 20px;
+  border: 2px solid black;
+}
+```
+
+---
+
+### 7. Positioning
+
+```css
+position: static | relative | absolute | fixed | sticky;
+top: 10px;
+left: 20px;
+```
+
+---
+
+### 8. Flexbox
 
 ```css
 .container {
@@ -157,7 +260,32 @@ div {
 
 ---
 
-## 🔵 6. Responsive Design
+### 9. Grid
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+```
+
+---
+
+### 10. Pseudo-classes & Pseudo-elements
+
+```css
+a:hover {
+  color: red;
+}
+p::first-line {
+  font-weight: bold;
+}
+```
+
+---
+
+### 11. Media Queries
 
 ```css
 @media (max-width: 600px) {
@@ -167,13 +295,14 @@ div {
 }
 ```
 
-
 ---
 
 ## ✅ Summary
 
-- 🟠 HTML: Structure of the web  
-- 🔵 CSS: Styling and layout  
-- 💡 Short examples, easy to remember  
+- 🟠 HTML builds the structure  
+- 🔵 CSS styles and layouts the page  
+- 🧱 Core building blocks for web development
 
-Happy Designing! 🎨
+---
+
+Happy Coding & Designing! 🎉
