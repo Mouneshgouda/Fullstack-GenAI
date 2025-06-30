@@ -358,6 +358,186 @@ This document provides a brief description of key semantic HTML5 tags used for s
   
 ## 🔵 CSS (Cascading Style Sheets)
 
+
+# CSS - Complete Guide
+
+## 🌐 What is CSS?
+
+CSS (Cascading Style Sheets) is used to style and design HTML elements. It controls the layout, colors, fonts, spacing, and responsiveness of a webpage.
+
+## 🎯 Purpose of CSS
+
+* To separate content from design
+* To style HTML elements
+* To make web pages visually appealing
+* To build responsive and mobile-friendly designs
+* To enable reusability and maintainability
+
+---
+
+## 🔹 1. CSS Syntax
+
+```
+selector {
+  property: value;
+}
+```
+
+Example:
+
+```css
+h1 {
+  color: blue;
+  font-size: 24px;
+}
+```
+
+---
+
+## 🔹 2. Types of CSS
+
+| Type         | Description                                 |
+| ------------ | ------------------------------------------- |
+| Inline CSS   | Inside HTML element using `style` attribute |
+| Internal CSS | Inside `<style>` tag in the `<head>`        |
+| External CSS | Linked using `<link href="style.css">`      |
+
+---
+
+## 🔹 3. CSS Selectors
+
+| Selector             | Description                               |
+| -------------------- | ----------------------------------------- |
+| `*`                  | Universal selector (selects all elements) |
+| `p`                  | Element selector                          |
+| `.class`             | Class selector                            |
+| `#id`                | ID selector                               |
+| `element1, element2` | Group selector                            |
+| `element element`    | Descendant selector                       |
+| `element > element`  | Child selector                            |
+| `element + element`  | Adjacent sibling selector                 |
+| `element ~ element`  | General sibling selector                  |
+
+---
+
+## 🔹 4. Common CSS Properties
+
+| Property           | Description                       |
+| ------------------ | --------------------------------- |
+| `color`            | Text color                        |
+| `background-color` | Background color                  |
+| `font-size`        | Size of text                      |
+| `font-family`      | Font type                         |
+| `text-align`       | Align text                        |
+| `margin`           | Space outside element             |
+| `padding`          | Space inside element              |
+| `border`           | Border around element             |
+| `width`/`height`   | Set dimensions                    |
+| `display`          | Block, inline, flex, grid, etc.   |
+| `position`         | static, relative, absolute, fixed |
+| `top`/`left`/etc.  | Position offsets                  |
+| `z-index`          | Stack order                       |
+| `overflow`         | What to do when content overflows |
+
+---
+
+## 🔹 5. Box Model
+
+* **Content** → **Padding** → **Border** → **Margin**
+* Understanding box model helps in spacing, layout, and alignment.
+
+---
+
+## 🔹 6. Colors & Units
+
+| Type   | Example Values                     |
+| ------ | ---------------------------------- |
+| Color  | `red`, `#ff0000`, `rgb(255,0,0)`   |
+| Length | `px`, `em`, `rem`, `%`, `vh`, `vw` |
+
+---
+
+## 🔹 7. Pseudo-Classes & Elements
+
+| Pseudo     | Description                   |
+| ---------- | ----------------------------- |
+| `:hover`   | When mouse hovers             |
+| `:active`  | When clicked                  |
+| `:focus`   | When input is focused         |
+| `::before` | Insert content before element |
+| `::after`  | Insert content after element  |
+
+---
+
+## 🔹 8. Flexbox (Layout)
+
+| Property          | Description              |
+| ----------------- | ------------------------ |
+| `display: flex`   | Enables flex container   |
+| `flex-direction`  | row / column             |
+| `justify-content` | Align items horizontally |
+| `align-items`     | Align items vertically   |
+| `gap`             | Space between items      |
+
+---
+
+## 🔹 9. Grid (Advanced Layout)
+
+| Property                  | Description                |
+| ------------------------- | -------------------------- |
+| `display: grid`           | Enables grid layout        |
+| `grid-template-columns`   | Define column layout       |
+| `grid-template-rows`      | Define row layout          |
+| `gap`                     | Space between rows/columns |
+| `grid-column`, `grid-row` | Span over rows/columns     |
+
+---
+
+## 🔹 10. Responsive Design
+
+| Technique       | Description                             |
+| --------------- | --------------------------------------- |
+| Media Queries   | Apply styles for different screen sizes |
+| `%`, `vh`, `vw` | Use flexible units                      |
+| `flex`, `grid`  | Responsive layout systems               |
+| `max-width`     | Prevent overflow                        |
+
+Example:
+
+```css
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+```
+
+---
+
+## 🔹 11. Animation & Transition
+
+| Property     | Description                 |
+| ------------ | --------------------------- |
+| `transition` | Smooth change of properties |
+| `animation`  | Keyframe-based animation    |
+| `@keyframes` | Define animation steps      |
+
+Example:
+
+```css
+div {
+  transition: background 0.5s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+```
+
+---
+
+
 ---
 
 ### 1. Adding CSS
