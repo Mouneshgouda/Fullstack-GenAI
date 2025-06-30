@@ -1,8 +1,8 @@
-### 1. Editing App.jsx
+### 1. Editing `App.jsx`
 
 - Inside your project folder:
 
-- Go to src/App.jsx
+- Go to `src/App.jsx`
 
 - You’ll see something like this:
 
@@ -19,13 +19,7 @@ function App() {
 
 export default App;
 ```
-Try changing the <h1> text:
 
-``jsx
-
-<h1>Hello, Mounesh!</h1>
-```
-- Save the file — your browser updates instantly. That’s called hot reload.
 
 ### 🔹 2. Creating Your First Component
 - A component is just a function that returns JSX.
