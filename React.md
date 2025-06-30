@@ -1,3 +1,7 @@
+```python
+npm create vite@latest
+```
+
 ### 1. Editing `App.jsx`
 
 - Inside your project folder:
