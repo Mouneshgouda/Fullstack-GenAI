@@ -1,0 +1,10 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background: coral;
+  transition: background 0.5s ease;
+}
+
+.box:hover {
+  background: teal;
+}

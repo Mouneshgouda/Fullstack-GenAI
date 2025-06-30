@@ -1,0 +1,11 @@
+.responsive-box {
+  background: orange;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .responsive-box {
+    background: lightblue;
+  }
+}

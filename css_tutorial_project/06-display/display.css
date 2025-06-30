@@ -1,0 +1,12 @@
+.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+  background: lightblue;
+}
+
+.hidden {
+  display: none;
+}

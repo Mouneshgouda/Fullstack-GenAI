@@ -1,0 +1,15 @@
+h1, p {
+  margin: 10px;
+}
+
+.title {
+  color: darkred;
+}
+
+#intro {
+  font-weight: bold;
+}
+
+div span {
+  color: green;
+}

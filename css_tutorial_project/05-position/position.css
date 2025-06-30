@@ -1,0 +1,14 @@
+.relative {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: #ccc;
+}
+
+.absolute {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: tomato;
+  padding: 10px;
+}

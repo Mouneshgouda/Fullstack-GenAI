@@ -1,0 +1,14 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  color: navy;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+}
