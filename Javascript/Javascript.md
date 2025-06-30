@@ -31,14 +31,13 @@ let unknown;               // undefined
 ## 🟢 3. Operators
 
 ```js
-// Math: + - * / %
-let sum = 5 + 2;
 
-// Compare: == === != !== > < >= <=
-5 === "5"; // false
+let sum=5+2
 
-// Logic: && || !
-true && false; // false
+5==="5";
+
+true &&false;
+console.log(sum)
 ```
 
 ---
