@@ -3,7 +3,7 @@
 Inside your project folder:
 
 Go to src/App.jsx
-``
+```
 You’ll see something like this:
 
 ```jsx
