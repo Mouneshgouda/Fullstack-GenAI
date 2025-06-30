@@ -8,8 +8,10 @@ A beginner-friendly summary of JavaScript essentials and object-oriented program
 ## 🟢 1. Variables
 
 ```js
-let name = "John";  // changeable
-const age = 25;     // fixed
+let name="mounesh";
+const age=25;
+console.log(age)
+console.log(age)
 ```
 
 ---
