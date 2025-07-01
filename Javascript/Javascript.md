@@ -22,10 +22,19 @@ console.log(age)
 let str = "hello";         // string  
 let num = 123;             // number  
 let isCool = true;         // boolean  
-let arr = [1, 2, 3];       // array  
+let arr = [1, 2, 3];       // array (object)  
 let obj = {a: 1, b: 2};    // object  
-let nothing = null;        // null  
+let nothing = null;        // null (object)  
 let unknown;               // undefined  
+
+console.log(typeof str);       // "string"
+console.log(typeof num);       // "number"
+console.log(typeof isCool);    // "boolean"
+console.log(typeof arr);       // "object"
+console.log(typeof obj);       // "object"
+console.log(typeof nothing);   // "object" (quirk in JS)
+console.log(typeof unknown);   // "undefined"
+  
 ```
 
 ---
