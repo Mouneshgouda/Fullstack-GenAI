@@ -9,7 +9,7 @@ A beginner-friendly summary of JavaScript essentials and object-oriented program
 
 ```js
 let name="mounesh";
-const age=25;
+const age=24;
 console.log(age)
 console.log(age)
 ```
