@@ -256,9 +256,6 @@ JSON is a lightweight data-interchange format, easy for humans to read and write
 
 The following example demonstrates how to use the Fetch API to retrieve JSON data from an endpoint, check for HTTP errors, and handle any network or parsing errors.
 
----
-
-### 🔹 Code
 
 ```javascript
 fetch('https://jsonplaceholder.typicode.com/posts/1')
