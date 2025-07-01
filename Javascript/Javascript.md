@@ -252,12 +252,13 @@ JSON is a lightweight data-interchange format, easy for humans to read and write
   }
 ```
 
-## 🌐 Fetch API: Simple GET Request Example
+### 🌐 Fetch API: Simple GET Request Example
 
 The following example demonstrates how to use the Fetch API to retrieve JSON data from an endpoint, check for HTTP errors, and handle any network or parsing errors.
 
 
 ```javascript
+
 fetch('https://jsonplaceholder.typicode.com/posts/1')
   .then(response => {
     // Check if the HTTP status indicates a successful response (status in the range 200–299)
