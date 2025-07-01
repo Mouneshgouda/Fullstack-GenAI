@@ -118,7 +118,7 @@ console.log(add(2, 3));      // 5
 ```javascript
 ## 🍇 JavaScript Array Operations
 
-```javascript
+
 let fruits = ["Apple", "Banana", "Mango"];
 
 console.log(fruits[0]); // Output: Apple
