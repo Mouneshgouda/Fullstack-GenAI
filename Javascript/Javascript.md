@@ -167,18 +167,24 @@ JavaScript timing events let you run code after a delay or repeatedly at interva
 Runs code **once** after a specified time (in milliseconds).
 
 ```javascript
-setTimeout(() => {
-  console.log("Hello after 2 seconds");
-}, 2000); // 2 seconds
+function greet() {
+  console.log("Hello after 2 seconds!");
+}
+
+setTimeout(greet, 2000); // Runs greet after 2000ms (2 seconds)
+
 ```
 ## 🔁 JavaScript `setInterval()` Example
 
 The `setInterval()` function runs code **repeatedly** at fixed time intervals.
 
 ```javascript
-setInterval(() => {
-  console.log("Repeating every 1 second");
-}, 1000); // 1 second
+function showTime() {
+  console.log(new Date().toLocaleTimeString());
+}
+
+setInterval(showTime, 1000); // Shows the current time every second
+
 
 ```
 ## 🛑 Stopping JavaScript Timers
