@@ -106,3 +106,75 @@ app.listen(port, () => {
 
 ```
 
+### First Api Server running
+```
+
+// app.js
+import express from 'express';
+
+const app = express();
+const PORT = 3000;
+
+app.get('', (req, res) => {
+res.send('Hello GURANNA! Welcome to your first API 🎉');
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
+});
+```
+
+## Api Routing 
+```
+import express from 'express';
+const app = express();
+const PORT = 3000;
+
+// Home route
+app.get('/', (req, res) => {
+  res.send('Welcome to Home Page');
+});
+
+// About route
+app.get('/about', (req, res) => {
+  res.send('This is the About Page');
+});
+
+// Contact route
+app.get('/contact', (req, res) => {
+  res.send('Contact us at example@example.com');
+});
+
+// Dynamic route with parameter
+app.get('/user/:username', (req, res) => {
+  const name = req.params.username;
+  res.send(`Hello, ${name}!`);
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+```
+
+
+
+# Sending Info To Server
+```
+// app.js
+import express from 'express';
+
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+app.post('/submit', (req, res) => {
+  const { name, email } = req.body;
+  res.send(`✅ Received data for ${name} with email: ${email}`);
+});
+
+app.listen(PORT, () => {
+  console.log(`📨 Server live at http://localhost:${PORT}`);
+});
+```
