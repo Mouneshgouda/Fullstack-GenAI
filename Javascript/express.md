@@ -185,11 +185,11 @@ const app = express();
 const PORT = 3000;
 
 app.get('', (req, res) => {
-res.send('Hello GURANNA! Welcome to your first API 🎉');
+res.send('Hello MOunesh! Welcome to your first API 🎉');
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 ```
 
