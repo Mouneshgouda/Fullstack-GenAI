@@ -1,3 +1,72 @@
+# 🧱 Express.js Basic Setup Guide
+
+## 1. Setup and Installation
+
+To start using Express:
+
+```bash
+npm init -y              # Initialize a Node.js project
+npm install express      # Install Express.js
+```
+## 2. Import and Create App
+
+```javascript
+const express = require('express');
+const app = express();
+```
+
+## 3. Define Routes
+
+Routes define how your app responds to different HTTP requests:
+
+```javascript
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+```
+
+## 4. Start the Server
+
+```javascript
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+```
+
+## 5. Middleware
+
+Middleware functions run before your route handlers.
+
+They can be used to process requests, handle logging, authentication, etc.
+
+Example: to parse JSON data from incoming requests:
+
+```javascript
+app.use(express.json()); // Now you can access JSON data via req.body
+```
+
+## 6. Serve Static Files
+
+To serve static files like HTML, CSS, or images:
+
+```javascript
+app.use(express.static('public')); // 'public' is the folder name
+```
+## 7. Basic Folder Structure
+```
+project/
+├── public/ # Static files (HTML, CSS, JS)
+│ └── index.html
+├── routes/ # (Optional) Route modules
+├── index.js # Main server file
+└── package.json # Project metadata and dependencies
+```
+
+
+
+
+
 ## Express
 
 
