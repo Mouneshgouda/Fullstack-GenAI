@@ -171,10 +171,10 @@ app.use(express.json());
 
 app.post('/submit', (req, res) => {
   const { name, email } = req.body;
-  res.send(`✅ Received data for ${name} with email: ${email}`);
+  res.send(`Received data for ${name} with email: ${email}`);
 });
 
 app.listen(PORT, () => {
-  console.log(`📨 Server live at http://localhost:${PORT}`);
+  console.log(`Server live at http://localhost:${PORT}`);
 });
 ```
