@@ -199,17 +199,14 @@ import express from 'express';
 const app = express();
 const PORT = 3000;
 
-// Home route
 app.get('/', (req, res) => {
   res.send('Welcome to Home Page');
 });
 
-// About route
 app.get('/about', (req, res) => {
   res.send('This is the About Page');
 });
 
-// Contact route
 app.get('/contact', (req, res) => {
   res.send('Contact us at example@example.com');
 });
@@ -220,7 +217,6 @@ app.get('/user/:username', (req, res) => {
   res.send(`Hello, ${name}!`);
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
