@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hand Gesture Recognition</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas, video { position: absolute; top: 0; left: 0; }
+    #gesture {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <video id="webcam" autoplay playsinline width="640" height="480"></video>
+  <canvas id="canvas" width="640" height="480"></canvas>
+  <div id="gesture">Loading...</div>
+
+  <!-- TensorFlow -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+
+  <script>
+    const video = document.getElementById("webcam");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const gestureText = document.getElementById("gesture");
+
+    const connections = [
+      [0,1],[1,2],[2,3],[3,4],
+      [0,5],[5,6],[6,7],[7,8],
+      [5,9],[9,10],[10,11],[11,12],
+      [9,13],[13,14],[14,15],[15,16],
+      [13,17],[17,18],[18,19],[19,20],
+      [0,17]
+    ];
+
+    async function setupCamera() {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { width: 640, height: 480 },
+        audio: false
+      });
+      video.srcObject = stream;
+      return new Promise(resolve => {
+        video.onloadedmetadata = () => resolve(video);
+      });
+    }
+
+    function distance(a, b) {
+      return Math.hypot(a[0] - b[0], a[1] - b[1]);
+    }
+
+    function detectGesture(landmarks) {
+      const [thumb, index, middle, ring, pinky] = [4, 8, 12, 16, 20];
+      const wrist = landmarks[0];
+
+      const isFingerUp = (tip) => landmarks[tip][1] < landmarks[tip - 2][1];
+
+      const thumbUp = landmarks[4][0] > landmarks[3][0]; // Right thumb
+      const allFingersUp = [index, middle, ring, pinky].every(isFingerUp);
+      const noFingersUp = [index, middle, ring, pinky].every(tip => !isFingerUp(tip));
+      const onlyIndexUp = isFingerUp(index) && [middle, ring, pinky].every(tip => !isFingerUp(tip));
+      const peace = isFingerUp(index) && isFingerUp(middle) && !isFingerUp(ring) && !isFingerUp(pinky);
+      const thumbsUp = thumbUp && !isFingerUp(index) && !isFingerUp(middle) && !isFingerUp(ring) && !isFingerUp(pinky);
+
+      if (allFingersUp) return "🖐 Open Palm";
+      if (noFingersUp) return "✊ Fist";
+      if (onlyIndexUp) return "👉 Pointing";
+      if (peace) return "✌️ Peace";
+      if (thumbsUp) return "👍 Thumbs Up";
+      return "🤔 Unknown";
+    }
+
+    async function run() {
+      const model = await handpose.load();
+      await setupCamera();
+      video.play();
+
+      async function detectHands() {
+        const predictions = await model.estimateHands(video);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        if (predictions.length > 0) {
+          const hand = predictions[0];
+          const landmarks = hand.landmarks;
+
+          // Draw skeleton
+          connections.forEach(([i, j]) => {
+            const [x1, y1] = landmarks[i];
+            const [x2, y2] = landmarks[j];
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = "#00FFAA";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          });
+
+          // Draw points
+          landmarks.forEach(([x, y]) => {
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = "magenta";
+            ctx.fill();
+          });
+
+          // Detect and display gesture
+          const gesture = detectGesture(landmarks);
+          gestureText.innerText = gesture;
+        } else {
+          gestureText.innerText = "✋ Show your hand!";
+        }
+
+        requestAnimationFrame(detectHands);
+      }
+
+      detectHands();
+    }
+
+    run();
+  </script>
+</body>
+</html>
+
