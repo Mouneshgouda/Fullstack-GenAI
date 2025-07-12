@@ -218,8 +218,45 @@ else:
     print(f"Directory '{directory}' already exists!")
 ```
 
+# Deefake
 
+```python
 
+source = "/content/VideoFake/face.jpg"
+target = "/content/VideoFake/input_video.mp4"
+output = "/content/VideoFake/out.mp4"
+
+Device = "cuda"
+Processor = "face_swapper"  # ✅ Safe single value
+VideoEncoder = "libx264"
+VideoQuality = "18"
+
+KeepFPS = True
+KeepAudio = True
+KeepFrames = False
+ManyFaces = True
+
+KeepFPS_flag = "--keep-fps" if KeepFPS else ""
+KeepAudio_flag = "" if KeepAudio else "--skip-audio"
+KeepFrames_flag = "--keep-frames" if KeepFrames else ""
+ManyFaces_flag = "--many-faces" if ManyFaces else ""
+
+cmd = f"""
+python /content/VideoFake/roop/run.py \
+--execution-provider {Device} \
+--source {source} \
+-t {target} \
+-o {output} \
+--frame-processor {Processor} \
+--output-video-encode {VideoEncoder} \
+--output-video-quality {VideoQuality} \
+{KeepFPS_flag} {KeepAudio_flag} {KeepFrames_flag} {ManyFaces_flag}
+"""
+
+print("Running command:")
+print(cmd)
+!{cmd}
+```
 
 
 
