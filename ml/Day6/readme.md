@@ -203,7 +203,20 @@ pip install tkinterdnd2
 ```python
 !pip install -U insightface
 ````
+# git Clone
+```python
+import shutil
+import os
 
+directory = "/content/VideoFake/roop/models/"
+
+# Create the directory if it doesn't already exist
+if not os.path.exists(directory):
+    os.makedirs(directory)
+    print(f"Directory '{directory}' created successfully!")
+else:
+    print(f"Directory '{directory}' already exists!")
+```
 
 
 
