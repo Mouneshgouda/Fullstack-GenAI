@@ -69,5 +69,54 @@ display(Image(data=base64.b64decode(image_base64), width=400))
 
 ```
 
+# UI Interface
+```python
+import base64
+from io import BytesIO
+from PIL import Image as PILImage
+import gradio as gr
+
+from langchain_core.messages import AIMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+# Initialize Gemini Model
+llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash-preview-image-generation")
+
+# Image generation function
+def generate_image(prompt):
+    try:
+        message = {
+            "role": "user",
+            "content": prompt,
+        }
+
+        response = llm.invoke(
+            [message],
+            generation_config=dict(response_modalities=["TEXT", "IMAGE"])
+        )
+
+        for block in response.content:
+            if isinstance(block, dict) and block.get("image_url"):
+                image_url = block["image_url"].get("url")
+                image_base64 = image_url.split(",")[-1]
+                image_bytes = base64.b64decode(image_base64)
+                image = PILImage.open(BytesIO(image_bytes))
+                return image
+
+        return "No image found in the response. Try a more descriptive prompt."
+    except Exception as e:
+        return f"Error: {e}"
+
+# Create UI
+gr.Interface(
+    fn=generate_image,
+    inputs=gr.Textbox(label="Enter your image prompt"),
+    outputs="image",
+    title="Gemini 2.0 Flash Image Generator",
+    description="Type a prompt (e.g., 'a girl near a lake at sunset, DSLR style') and see what Gemini generates!",
+    theme="default"
+).launch()
+```
+
 
 
