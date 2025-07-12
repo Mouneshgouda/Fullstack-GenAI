@@ -174,6 +174,59 @@ def get_translation(user_text, target_language):
 print(get_translation("How are you?", "telugu"))
 
 ```
+# UI Interface
+```python
+
+import os
+import getpass
+import gradio as gr
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+if "GOOGLE_API_KEY" not in os.environ:
+    os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter your Google API Key: ")
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash",
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+)
+
+
+def translate(text, target_language):
+    messages = [
+        (
+            "system",
+            f"You are a helpful assistant that translates English to {target_language}. Translate the user sentence accurately.",
+        ),
+        ("human", text),
+    ]
+    response = llm.invoke(messages)
+    return response.content
+
+language_options = [
+      "india","Hindi",
+      "telangana","telugu",
+      "karnataka","kannada",
+      "tamilnadu""tamil",
+      "kerala","malayalam",
+]
+
+iface = gr.Interface(
+    fn=translate,
+    inputs=[
+        gr.Textbox(label="Enter English Text"),
+        gr.Dropdown(language_options, label="Select Target Language"),
+    ],
+    outputs=gr.Textbox(label="Translated Text"),
+    title="Multilingual Translator using Gemini",
+    description="Translate English text to multiple languages using Google Gemini model via LangChain."
+)
+
+iface.launch()
+
+```
 
 # DEEFAKE
 
