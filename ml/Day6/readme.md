@@ -175,7 +175,7 @@ print(get_translation("How are you?", "telugu"))
 
 ```
 
-DEEFAKE
+# DEEFAKE
 
 ```python
 !sudo apt install nvidia-cudnn -y --yes --fix-missing
