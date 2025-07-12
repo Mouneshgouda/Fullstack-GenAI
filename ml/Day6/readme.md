@@ -175,6 +175,42 @@ print(get_translation("How are you?", "telugu"))
 
 ```
 
+DEEFAKE
+
+```python
+!sudo apt install nvidia-cudnn -y --yes --fix-missing
+
+```
+```python
+!git clone https://github.com/neuromodern/VideoFake.git
+```
+```python
+
+!pip install onnxruntime-gpu --upgrade
+
+```
+
+```python
+!pip install customtkinter
+```
+
+```python
+
+pip install tkinterdnd2
+
+```
+
+```python
+!pip install -U insightface
+````
+
+
+
+
+
+
+
+
 
 
 
