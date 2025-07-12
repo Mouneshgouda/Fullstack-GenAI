@@ -118,5 +118,66 @@ gr.Interface(
 ).launch()
 ```
 
+# translater
+```python
+
+import getpass
+import os
+
+if "GOOGLE_API_KEY" not in os.environ:
+    os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter-Your-GOOGLE_API_KEY")
+```
+
+
+```python
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash",
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+   
+)
+```
+
+```python
+def get_translate(user_text,):
+    messages = [
+        (
+            "system",
+            "You are a helpful assistant that translates English to . Translate the user sentence.",
+        ),
+        ("human", user_text),
+    ]
+    ai_msg = llm.invoke(messages)
+    return ai_msg.content
+
+
+```
+
+
+```python
+def get_translation(user_text, target_language):
+    messages = [
+        (
+            "system",
+            f"You are a helpful assistant that translates English to {target_language}. Translate the user sentence clearly and accurately.",
+        ),
+        ("human", user_text),
+    ]
+    ai_msg = llm.invoke(messages)
+    return ai_msg.content
+```
+
+```python
+
+print(get_translation("How are you?", "telugu"))
+
+```
+
+
+
+
+
 
 
