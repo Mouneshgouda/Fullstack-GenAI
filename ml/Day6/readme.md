@@ -35,5 +35,39 @@ if "GOOGLE_API_KEY" not in os.environ:
     os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter-Your-GOOGLE_API_KEY")
 ```
 
+### Text to Img
+
+```python
+
+
+import base64
+from IPython.display import Image,display
+from langchain_core.messages import AIMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
+llm = ChatGoogleGenerativeAI(model="models/gemini-2.0-flash-preview-image-generation")
+
+
+message = {
+    "role": "user",
+    "content": "Dog with hat,sunglass",
+}
+response = llm.invoke(
+    [message],
+    generation_config=dict(response_modalities=["TEXT", "IMAGE"]),
+)
+
+def _get_image_base64(response: AIMessage) -> None:
+    image_block = next(
+        block
+        for block in response.content
+        if isinstance(block, dict) and block.get("image_url")
+    )
+    return image_block["image_url"].get("url").split(",")[-1]
+
+image_base64 = _get_image_base64(response)
+display(Image(data=base64.b64decode(image_base64), width=400))
+
+```
+
 
 
