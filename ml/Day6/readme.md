@@ -25,3 +25,15 @@ model = torch.hub.load("bryandlee/animegan2-pytorch:main", "generator", pretrain
 display(to_animegan2('/content/face.jpg'))
 ```
 
+
+## API KEY
+```python
+
+import getpass 
+import os
+if "GOOGLE_API_KEY" not in os.environ:
+    os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter-Your-GOOGLE_API_KEY")
+```
+
+
+
