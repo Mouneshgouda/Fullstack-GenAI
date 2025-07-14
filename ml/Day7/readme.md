@@ -1,6 +1,10 @@
 ## Image 
 
 ```python
+from transformers import BlipProcessor, BlipForConditionalGeneration
+from PIL import Image #image Process
+import torch
+
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 
