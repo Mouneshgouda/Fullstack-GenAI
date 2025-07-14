@@ -94,7 +94,15 @@ from google.colab import files
 from IPython.display import display, HTML
 
 # STEP 3: Define moods and songs
-moods = ["happy", "sad", "chill", "dark", "energetic", "lonely", "calm"]
+from transformers import CLIPProcessor, CLIPModel
+from PIL import Image
+import torch
+import random
+from google.colab import files
+from IPython.display import display, HTML
+
+# STEP 3: Define moods and songs
+moods = ["happy", "sad", "romantic", "chill", "dark", "energetic", "lonely", "calm"]
 
 famous_songs = {
     "happy": [("Happy - Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs")],
@@ -114,6 +122,21 @@ clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 uploaded = files.upload()
 image_path = list(uploaded.keys())[0]
 image = Image.open(image_path).convert("RGB")
+
+inputs = clip_processor(text=moods, images=image, return_tensors="pt", padding=True)
+outputs = clip_model(**inputs)
+probs = outputs.logits_per_image.softmax(dim=1)
+predicted_mood = moods[probs.argmax().item()]
+
+song_title, song_url = random.choice(famous_songs[predicted_mood])
+
+display(image)
+display(HTML(f"""
+<h3> Predicted Mood: <span style='color:green'>{predicted_mood.upper()}</span></h3>
+<h4> Recommended Song: <a href="{song_url}" target="_blank">{song_title}</a></h4>
+"""))
+
+
 ```
 
 
