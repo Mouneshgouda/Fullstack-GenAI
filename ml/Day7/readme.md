@@ -191,3 +191,25 @@ user_study_video = upload_video('User_study.mp4')
 ```
 
 
+```python
+
+import json
+from PIL import Image
+from IPython.display import display, HTML,Markdown
+
+prompt=" For each Scene In this Video,generate captions that describe the scene along with any spoken text placed in quetion marks. place "
+
+video=trailcam_video
+
+response=client.models.generate_content(
+    model=MODEL_ID,
+    contents=[
+        video,
+        prompt
+    ]
+)
+Markdown(response.text)
+
+```
+
+
