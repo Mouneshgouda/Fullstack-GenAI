@@ -26,5 +26,20 @@ from PIL import Image
 
 processor=ViltProcessor.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
 model=ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
+
+image = Image.open("/content/Cat_November_2010-1a.jpg")
+text = "cat  color" #q
+image
+
+input=processor(image,text,return_tensors="pt")
+
+import torch
+processor = ViltProcessor.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
+
+outputs = model(**input)
+logits = outputs.logits
+idx = torch.sigmoid(logits).argmax(-1).item()
+print("Predicted answer:", model.config.id2label[idx])
+
 ```
 
