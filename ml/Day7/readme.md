@@ -16,3 +16,15 @@ out=model.generate(**input)
 caption=processor.decode(out[0],skip_special_tokens=True)
 print("caption",caption)
 ```
+## Q and A
+
+```python
+
+from transformers import ViltProcessor,ViltForQuestionAnswering
+import requests
+from PIL import Image
+
+processor=ViltProcessor.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
+model=ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
+```
+
