@@ -83,4 +83,39 @@ gr.Interface(
     description="Upload a food image, and the AI will generate a caption + Recipe"
 ).launch()
 ```
+## Img(mood) To Song 
+
+```python
+from transformers import CLIPProcessor, CLIPModel
+from PIL import Image
+import torch
+import random
+from google.colab import files
+from IPython.display import display, HTML
+
+# STEP 3: Define moods and songs
+moods = ["happy", "sad", "chill", "dark", "energetic", "lonely", "calm"]
+
+famous_songs = {
+    "happy": [("Happy - Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs")],
+    "sad": [("Let Her Go - Passenger", "https://www.youtube.com/watch?v=RBumgq5yVrA")],
+    "chill": [("Sunflower - Post Malone", "https://www.youtube.com/watch?v=ApXoWvfEYVU")],
+    "dark": [("Lose Yourself - Eminem", "https://www.youtube.com/watch?v=_Yhyp-_hX2s")],
+    "energetic": [("Believer - Imagine Dragons", "https://www.youtube.com/watch?v=7wtfhZwyrcc")],
+    "lonely": [("See You Again - Wiz Khalifa", "https://www.youtube.com/watch?v=RgKAFK5djSk")],
+    "calm": [("Fix You - Coldplay", "https://www.youtube.com/watch?v=k4V3Mo61fJM")]
+}
+
+# STEP 4: Load CLIP model and processor
+clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+# STEP 5: Upload image
+uploaded = files.upload()
+image_path = list(uploaded.keys())[0]
+image = Image.open(image_path).convert("RGB")
+```
+
+
+
 
