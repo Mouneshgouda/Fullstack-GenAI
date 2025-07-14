@@ -142,6 +142,29 @@ gr.Interface(
 
 ```
 
+# Video Frame
 
+```python
+import time
+
+def upload_video(video_file_name):
+  video_file = client.files.upload(file=video_file_name)
+
+  while video_file.state == "PROCESSING":
+      print('Waiting for video to be processed.')
+      time.sleep(10)
+      video_file = client.files.get(name=video_file.name)
+
+  if video_file.state == "FAILED":
+    raise ValueError(video_file.state)
+  print(f'Video processing complete: ' + video_file.uri)
+
+  return video_file
+
+pottery_video = upload_video('Pottery.mp4')
+trailcam_video = upload_video('Trailcam.mp4')
+post_its_video = upload_video('Post_its.mp4')
+user_study_video = upload_video('User_study.mp4')
+```
 
 
