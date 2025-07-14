@@ -86,23 +86,16 @@ gr.Interface(
 ## Img(mood) To Song 
 
 ```python
-from transformers import CLIPProcessor, CLIPModel
+import gradio as gr
 from PIL import Image
+from transformers import CLIPProcessor,CLIPModel
 import torch
 import random
-from google.colab import files
-from IPython.display import display, HTML
 
-# STEP 3: Define moods and songs
-from transformers import CLIPProcessor, CLIPModel
-from PIL import Image
-import torch
-import random
-from google.colab import files
-from IPython.display import display, HTML
+clip_model=CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+clip_processor=CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
-# STEP 3: Define moods and songs
-moods = ["happy", "sad", "romantic", "chill", "dark", "energetic", "lonely", "calm"]
+moods = ["happy", "sad", "chill", "dark", "energetic", "lonely", "calm"]
 
 famous_songs = {
     "happy": [("Happy - Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs")],
@@ -114,27 +107,37 @@ famous_songs = {
     "calm": [("Fix You - Coldplay", "https://www.youtube.com/watch?v=k4V3Mo61fJM")]
 }
 
-# STEP 4: Load CLIP model and processor
-clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
-clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+def predict_mood(image):
+    inputs = clip_processor(text=moods, images=image, return_tensors="pt", padding=True)
+    outputs = clip_model(**inputs)
+    probs = outputs.logits_per_image.softmax(dim=1)
+    top_idx = probs.argmax().item()
+    predicted_mood = moods[top_idx]
 
-# STEP 5: Upload image
-uploaded = files.upload()
-image_path = list(uploaded.keys())[0]
-image = Image.open(image_path).convert("RGB")
+    song_title, song_url = random.choice(famous_songs[predicted_mood])
+    markdown = f"""
+###  Mood: **{predicted_mood.capitalize()}**
 
-inputs = clip_processor(text=moods, images=image, return_tensors="pt", padding=True)
-outputs = clip_model(**inputs)
-probs = outputs.logits_per_image.softmax(dim=1)
-predicted_mood = moods[probs.argmax().item()]
+Recommended Song: **[{song_title}]({song_url})**
 
-song_title, song_url = random.choice(famous_songs[predicted_mood])
+ [Click here to play the song]( {song_url} )
+"""
+    return markdown
 
-display(image)
-display(HTML(f"""
-<h3> Predicted Mood: <span style='color:green'>{predicted_mood.upper()}</span></h3>
-<h4> Recommended Song: <a href="{song_url}" target="_blank">{song_title}</a></h4>
-"""))
+
+
+
+gr.Interface(
+    fn=predict_mood,
+    inputs=gr.Image(type="pil"),
+    outputs=gr.Markdown(),
+    title=" Image Mood → Real Song Recommender",
+    description="Upload an image and get a famous Hindi/English song based on your mood. Click the link to play!",
+    theme="default"
+).launch()
+
+
+
 
 
 ```
