@@ -51,4 +51,33 @@ def ask(q):
 
 
 ```
+## social
+
+```python
+
+print("Original Text:")
+print(df_summary_info.to_string())
+
+import re
+
+def remove_img_texts(html_text: str) -> str:
+    """
+    Removes any text between <img ... </img> tags (including the tags)
+    from the given text.
+    """
     
+    pattern = re.compile(r'<img[^>]*>.*?</img>', re.DOTALL | re.IGNORECASE)
+    cleaned_text = pattern.sub('', html_text)
+    return cleaned_text
+
+
+result = remove_img_texts(df_summary_info.to_string())
+print("\nCleaned Text:")
+print(result)
+
+
+with open("df_summary_text.txt", "w") as f:
+    f.write(result)
+
+
+```
