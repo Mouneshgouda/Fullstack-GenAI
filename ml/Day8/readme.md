@@ -2,9 +2,6 @@
 
 
 ```python
-
-
-
 !pip install -q PyPDF2 langchain faiss-cpu spacy transformers langchain-community
 !python -m spacy download en_core_web_sm
 
@@ -42,5 +39,16 @@ def ask(q):
     context = " ".join([doc.page_content for doc in docs[:2]])[:1000]
     result = qa(question=q, context=context)
     print(f"\n Question: {q}\n Answer: {result['answer']}")
+
+    while True:
+      q=input("Ask a question or (type exit)")
+
+      if q.lower() == "exit":
+        print("Exit Bye")
+        break
+      ask(q)
+
+
+
 ```
     
