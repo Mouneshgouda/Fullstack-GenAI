@@ -100,5 +100,16 @@ task2 = Task(
     expected_output="A simplified, analogy-based explanation of lightning for a child.",
     agent=explanation_agent
 )
+crew = Crew(
+    agents=[fact_agent, explanation_agent],
+    tasks=[task1, task2],
+    verbose=True,
+    process=Process.sequential,  
+)
+
+crew_output = crew.kickoff()
+print("\nCrew Output:")
+print(crew_output)
+
 
 ```
