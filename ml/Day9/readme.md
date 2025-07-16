@@ -2,26 +2,60 @@
 # Text
 ```python
 
-from transformers import pipeline
+!pip install -q "lxml[html_clean]" newspaper3k
+!python -m nltk.downloader punkt
+
+!pip install -q newspaper3k
+!python -m nltk.downloader punkt
+
+
 import gradio as gr
+from transformers import pipeline
+from newspaper import Article
 
+# Load summarization model
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-summarizer=pipeline("summarization",model="facebook/bart-large-cnn")
+# Extract article text from URL
+def extract_text_from_url(url):
+    try:
+        article = Article(url)
+        article.download()
+        article.parse()
+        return article.text
+    except Exception as e:
+        return f"Error fetching article: {e}"
 
-def summarize(text):
-  if len(text.strip())<50:
-    return "please enter the 50 characters of text"
+# Summarization logic
+def summarize_input(text, url):
+    if url.strip():
+        text = extract_text_from_url(url)
 
-    summary = summarizer(text, max_length=150, min_length=30, do_sample=False)[0]['summary_text']
+    if not text or len(text.strip()) < 50:
+        return "Please provide at least 50 characters of content."
+
+    summary = summarizer(text, max_length=180, min_length=40, do_sample=False)[0]["summary_text"]
     return summary
 
-demo = gr.Interface(
-    fn=summarize,
-    inputs=gr.Textbox(lines=15, placeholder="text here..."),
-    outputs="text",
-    title=" AI Text Summarizer",
-    description="Paste any long article or paragraph"
-)
+# Gradio interface
+with gr.Blocks() as demo:
+    gr.Markdown("##  AI Text & URL Summarizer")
+    gr.Markdown("Paste text OR enter a URL to summarize content. Powered by BART.")
+
+    with gr.Row():
+        text_input = gr.Textbox(label="Text Input", placeholder="Paste long text here...", lines=10)
+        url_input = gr.Textbox(label="URL Input", placeholder="https://example.com/article")
+
+    summarize_button = gr.Button("Summarize")
+    output = gr.Textbox(label="Summary Output", lines=6)
+
+    summarize_button.click(
+        fn=summarize_input,
+        inputs=[text_input, url_input],
+        outputs=output
+    )
+
 demo.launch(share=True)
+
 
 ```
