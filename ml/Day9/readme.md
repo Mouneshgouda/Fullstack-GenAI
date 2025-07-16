@@ -113,3 +113,29 @@ print(crew_output)
 
 
 ```
+LangGraph
+
+```python
+
+import os
+import google.generativeai as genai
+os.environ["GOOGLE_API_KEY"] = "AIzaSyB_V3DqJiHPzsbklDmkQQNnSORGPTNnNyo"
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+def chat_node(state):
+  user_input=state["message"]
+  history=state.get["history",[]]
+
+  prompt = "\n".join([f"User: {h['user']}\nBot: {h['bot']}" for h in history])
+  prompt += f"\n\nUser: {user_input}\nBot:"
+
+  response=model.generate_content(prompt)
+  replay=response.text.strip()
+  history.append({"user":user_input,"bot":replay})
+
+  return {"message": "", "history": history, "reply": reply}
+
+
+```
