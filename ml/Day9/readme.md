@@ -59,3 +59,46 @@ demo.launch(share=True)
 
 
 ```
+# Agent
+
+```python
+
+from crewai import Agent, Task, Crew, Process, LLM
+
+
+llm = LLM(model="gemini/gemini-2.0-flash")
+
+
+fact_agent = Agent(
+    role="Fact Expert",
+    goal="Answer general knowledge questions with accurate and concise information.",
+    backstory="An AI assistant trained in trivia, science, history, and general facts.",
+    verbose=True,
+    allow_delegation=False,
+    llm=llm
+)
+
+explanation_agent = Agent(
+    role="Friendly Explainer",
+    goal="Break down complex answers into simple, easy-to-understand explanations.",
+    backstory="A helpful teacher who simplifies answers for students and beginners.",
+    verbose=True,
+    allow_delegation=False,
+    llm=llm
+)
+
+
+task1 = Task(
+    description="""Question: What causes lightning during a thunderstorm?
+Please provide a factual and scientific explanation.""",
+    expected_output="A concise scientific explanation of lightning formation.",
+    agent=fact_agent
+)
+
+task2 = Task(
+    description="""Question: Explain how lightning works in a way that a 10-year-old could understand.""",
+    expected_output="A simplified, analogy-based explanation of lightning for a child.",
+    agent=explanation_agent
+)
+
+```
