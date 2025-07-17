@@ -18,10 +18,10 @@
 <img width="993" height="759" alt="Screenshot 2025-07-17 180803" src="https://github.com/user-attachments/assets/20d0adc8-c95b-40c0-953b-5f8f8ed27b9c" />
 
 
-![Uploading Screenshot 2025-07-17 182423.png…]()
 
 
 
+<img width="1799" height="1346" alt="Screenshot 2025-07-17 182423" src="https://github.com/user-attachments/assets/8d11a125-80b5-402e-8736-bdca224dd686" />
 
 
 
