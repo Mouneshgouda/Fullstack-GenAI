@@ -1,4 +1,14 @@
 
+```python --app.py
 
+import os
+print("my first image")
+print("current Dir is:",os.getcwd())
 
-Virtual machine scale set
+```
+```python Dockerfile
+FROM python
+WORKDIR /app
+COPY . /app
+CMD [ "python3","app.py" ]
+```
