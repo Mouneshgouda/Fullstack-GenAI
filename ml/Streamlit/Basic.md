@@ -1,7 +1,7 @@
 ## 🧱 Step 1: What is Streamlit?
-` Streamlit is a Python library that lets you turn scripts into web apps with zero frontend code.
+- Streamlit is a Python library that lets you turn scripts into web apps with zero frontend code.
 
--You can use it for:
+- You can use it for:
 
 - 📊 Dashboards
 
@@ -31,14 +31,14 @@ streamlit run app.py
 ```
 ## 🧩 Step 4: Learn Basic Components
 ```python
-st.title()	Big title at the top	st.title("Welcome")
-st.write()	Display text or objects	st.write("Hello!")
-st.text_input()	Input box	name = st.text_input("Name")
-st.button()	Clickable button	st.button("Submit")
-st.slider()	Select a number	age = st.slider("Age", 0, 100)
-st.checkbox()	True/False toggle	if st.checkbox("Show"):
-st.balloons()	Fun balloons animation	st.balloons()
-st.line_chart()	Create a line chart	st.line_chart([1,2,3,4])
+st.title()	Big title at the top	      st.title("Welcome")
+st.write()	Display text or objects	      st.write("Hello!")
+st.text_input()	Input box	              name = st.text_input("Name")
+st.button()	Clickable button	          st.button("Submit")
+st.slider()	Select a number	              age = st.slider("Age", 0, 100)
+st.checkbox()	True/False toggle	      if st.checkbox("Show"):
+st.balloons()	Fun balloons animation	  st.balloons()
+st.line_chart()	Create a line chart	      st.line_chart([1,2,3,4])
 ```
 
 ## 🔄 Step 5: Add Interactivity
