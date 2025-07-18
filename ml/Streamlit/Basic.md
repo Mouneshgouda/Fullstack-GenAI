@@ -14,9 +14,9 @@
 ## 🛠️ Step 2: Install Streamlit
 Make sure you have Python installed. Then run:
 
-pip install streamlit
-streamlit hello
-It will launch a demo app in your browser.
+- pip install streamlit
+- streamlit hello
+- It will launch a demo app in your browser.
 
 ## 📂 Step 3: Create Your First App
 - Open any folder.
