@@ -34,10 +34,10 @@ streamlit run app.py
 st.title()	Big title at the top	      st.title("Welcome")
 st.write()	Display text or objects	      st.write("Hello!")
 st.text_input()	Input box	              name = st.text_input("Name")
-st.button()	Clickable button	          st.button("Submit")
+st.button()	Clickable button	       st.button("Submit")
 st.slider()	Select a number	              age = st.slider("Age", 0, 100)
 st.checkbox()	True/False toggle	      if st.checkbox("Show"):
-st.balloons()	Fun balloons animation	  st.balloons()
+st.balloons()	Fun balloons animation	    st.balloons()
 st.line_chart()	Create a line chart	      st.line_chart([1,2,3,4])
 ```
 
