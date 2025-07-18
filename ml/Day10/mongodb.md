@@ -138,6 +138,12 @@ def run_etl_api():
     transformed_data = run_etl()
     return {"message": "ETL process completed", "records": transformed_data[:5]}
 ```
+After run in terminal(vs code)
+```python
+python -m uvicorn app:app --reload
+```
+
+
 
 ## Spark
 
