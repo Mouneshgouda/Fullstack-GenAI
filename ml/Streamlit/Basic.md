@@ -3,13 +3,13 @@
 
 -You can use it for:
 
--📊 Dashboards
+- 📊 Dashboards
 
--🤖 Machine Learning demos
+- 🤖 Machine Learning demos
 
--📦 Product recommendation tools
+- 📦 Product recommendation tools
 
--🧪 Data science experiments
+- 🧪 Data science experiments
 
 ## 🛠️ Step 2: Install Streamlit
 Make sure you have Python installed. Then run:
