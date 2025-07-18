@@ -31,3 +31,17 @@
 | Data Viz          | Pie Chart Animation      | [Link](https://assets2.lottiefiles.com/packages/lf20_t0cjqj.json) |
 | Data Viz          | Line Graph Animation     | [Link](https://assets8.lottiefiles.com/packages/lf20_zrqthn6o.json) |
 | Data Viz          | Dashboard Analytics      | [Link](https://assets1.lottiefiles.com/packages/lf20_ye3fehx0.json) |
+
+## Animation
+```python
+from streamlit_lottie import st_lottie
+import requests
+
+def load(url):
+    r=requests.get(url)
+    if r.status_code!=200:
+        return None
+    return r.json()
+lott=load("https://assets1.lottiefiles.com/packages/lf20_gjmecwii.json")
+st_lottie(lott,height=300)
+```
