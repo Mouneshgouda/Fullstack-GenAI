@@ -1,0 +1,1 @@
+🏠 Home", "📄 About", "📊 Charts", "📞 Contact"
