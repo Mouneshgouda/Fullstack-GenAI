@@ -41,8 +41,7 @@ Write a line of code that creates your Flask app instance.
 
 
 ---
-
-```markdown
+```python
 ## 🧩 Step 4: Create Route to Get All Devices
 
 🔍 **Goal:** Make a `GET` request that returns the full device list.
