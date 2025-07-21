@@ -39,6 +39,27 @@ Write a line of code that creates your Flask app instance.
 # Initialize the app using Flask(__name__)
 ```
 
+## 🧩 Step 3: Create a Fake In-Memory Database
+
+🔍 **Goal:** Simulate a device database using a Python dictionary.
+
+🧠 **Clues:**
+
+- Create a dictionary called `devices`.
+- Each key in the dictionary will represent a device name, like `"Light"` or `"Fan"`.
+- Each value will be another dictionary holding:
+  - `"status"` (e.g., `"on"` or `"off"`)
+  - `"energy_kWh"` (a number representing energy usage)
+
+✍️ **Your Task:**
+Define a Python dictionary that stores device information in memory.
+
+💡 **Hint:** This acts as your temporary database while testing your API.
+
+```python
+# Create a dictionary to simulate a database of smart devices
+```
+
 
 ## 🧩 Step 4: Create Route to Get All Devices
 
