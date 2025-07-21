@@ -40,7 +40,7 @@ Write a line of code that creates your Flask app instance.
 ```
 
 
----
+
 ```python
 ## 🧩 Step 4: Create Route to Get All Devices
 
