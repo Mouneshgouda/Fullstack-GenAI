@@ -57,7 +57,7 @@ Write a line of code that creates your Flask app instance.
 Define a function that handles this route and returns all devices.
 
 💡 **Hint:** Flask matches the route and calls your function.
-
+```
 ```python
 # Define a GET route that returns all devices
 ```
