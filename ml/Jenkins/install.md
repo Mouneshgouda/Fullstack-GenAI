@@ -1,4 +1,4 @@
-## #Jenkins Installation
+### Jenkins Installation
 - Before you begin the installation, make sure you have the following prerequisite in place:
 
 - Java Development Kit (JDK) installed on the server. Jenkins requires Java 8 or later.
