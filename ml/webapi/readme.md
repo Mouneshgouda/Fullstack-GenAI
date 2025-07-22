@@ -59,3 +59,33 @@ if __name__ == '__main__':
 
 ```
 
+
+### JWT
+
+```python
+
+from flask import Flask,request,jsonify
+import jwt, datetime
+
+app=Flask(__name__)
+SECRET='abnj'
+
+@app.route('/login',methods=['POST'])
+def login():
+    data=request.get_json()
+    if data['username']=='admin' and data['password']=='123':
+        token=jwt.encode(
+            {'user': 'admin', 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)},
+            SECRET,
+            algorithm='HS256'
+        )
+        return jsonify(token=token)
+    return jsonify(mesg='Invalid'),401
+
+if __name__=='__main__':
+    app.run(debug=True)
+
+
+    
+
+```
