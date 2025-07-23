@@ -1,6 +1,15 @@
 
 ### Redis 
 
+```python
+- server connection
+redis-server.exe
+
+- clint connection
+redis-cli.exe
+```
+
+
 ## 🔵 1. CREATE
 
 ```python
