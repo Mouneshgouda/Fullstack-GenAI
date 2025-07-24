@@ -1,3 +1,12 @@
+```
+- server connection
+redis-server.exe
+
+- clint connection
+redis-cli.exe
+```
+
+
 ## addHtml
 
 ```python
