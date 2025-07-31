@@ -42,3 +42,36 @@ h1, h2, h3 {
 """, unsafe_allow_html=True)
 
 ```
+```python
+## Background Image
+ Clean & Minimal:
+White-Gray Texture
+https://images.unsplash.com/photo-1581287059658-4bfa556645b7
+
+Paper Style
+https://images.unsplash.com/photo-1542291026-7eec264c27ff
+
+Concrete Wall
+https://images.unsplash.com/photo-1548777123-e216912df019
+
+ Nature Inspired:
+Forest
+https://images.unsplash.com/photo-1501785888041-af3ef285b470
+
+Sky & Mountains
+https://images.unsplash.com/photo-1507525428034-b723cf961d3e
+
+Ocean
+https://images.unsplash.com/photo-1506744038136-46273834b3fb
+
+Technology/Abstract:
+Futuristic Grid
+https://images.unsplash.com/photo-1544197150-b99a580bb7a8
+
+Cables / Data
+https://images.unsplash.com/photo-1518770660439-4636190af475
+
+Code in background
+https://images.unsplash.com/photo-1581092580495-4c835cf5f92b
+
+```python
