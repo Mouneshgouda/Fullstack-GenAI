@@ -75,3 +75,40 @@ Code in background
 https://images.unsplash.com/photo-1581092580495-4c835cf5f92b
 
 ```python
+
+
+
+```python
+model_columns=[
+    'num_occupants',
+    'house_size_sqft',
+    'monthly_income',
+    'outside_temp_celsius',
+    'year',
+    'month',
+    'day',
+    'season',
+    'heating_type_Electric',
+    'heating_type_Gas',
+    'heating_type_None',
+    'cooling_type_AC',
+    'cooling_type_Fan',
+    'cooling_type_None',
+    'manual_override_Y',
+    'manual_override_N',
+    'is_weekend',
+    'temp_above_avg',
+    'income_per_person',
+    'square_feet_per_person',
+    'high_income_flag',
+    'low_temp_flag',
+    'season_spring',
+    'season_summer',
+    'season_fall',
+    'season_winter',
+    'day_of_week_0',
+    'day_of_week_6',
+    'energy_star_home'
+]
+
+```
