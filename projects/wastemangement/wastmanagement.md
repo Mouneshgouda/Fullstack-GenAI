@@ -3,69 +3,65 @@
 ```python
 
 import gradio as gr
-import tensorflow.keras.utils as ku
+import tensorflow as tf
 import numpy as np
-from tensorflow.keras.models import load_model
+from tensorflow.keras.utils import load_img, img_to_array
+from PIL import Image
 
-# Load your model
-labels = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
+# Load model
+model = tf.keras.models.load_model('/content/modelnew.h5')
 
-# Core classification logic
-def classify_image(image):
-    img = ku.array_to_img(image).resize((300, 300))
-    img_array = ku.img_to_array(img, dtype=np.uint8) / 255.0
-    prediction = model.predict(img_array[np.newaxis, ...])[0]
+# Labels
+labels = {
+    0: 'cardboard',
+    1: 'glass',
+    2: 'metal',
+    3: 'paper',
+    4: 'plastic',
+    5: 'trash'
+}
 
-    predicted_class = labels[np.argmax(prediction)]
-    confidence = float(np.max(prediction))
-    class_confidence = {label: float(prediction[i]) for i, label in enumerate(labels)}
+# Prediction function
+def predict_image(img):
+    img = img.resize((300, 300))
+    img_array = img_to_array(img) / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
 
-    return predicted_class, f"{confidence * 100:.2f}%", class_confidence
+    prediction = model.predict(img_array)[0]
+    return {labels[i]: float(prediction[i]) for i in range(len(labels))}
 
-# Fancy Gradio App
-with gr.Blocks(theme=gr.themes.Soft()) as demo:
-    gr.Markdown(
-        """
-        <div style='text-align: center;'>
-            <h1 style='font-size: 2.5em; color: #4A90E2;'>🧠 Trash Classifier</h1>
-            <p style='font-size: 1.2em;'>Upload an image of trash, and let our AI sort it into categories!</p>
-            <p style='font-size: 1em; color: gray;'>Built with TensorFlow + Gradio</p>
-        </div>
-        """,
-    )
+# Example images (optional)
+examples = [
+    ["/content/Smart-Garbage-Segregation/Data/Test/cardboard/cardboard353.jpg"],
+    ["/content/Smart-Garbage-Segregation/Data/Test/paper/paper522.jpg"],
+    ["/content/Smart-Garbage-Segregation/Data/Test/metal/metal386.jpg"],
+    ["/content/Smart-Garbage-Segregation/Data/Test/plastic/plastic430.jpg"]
+]
+
+# Using gr.Blocks for a better layout
+with gr.Blocks(css=".gradio-container {background-color: #f8f9fa; font-family: 'Segoe UI';}") as demo:
+    gr.Markdown("<h1 style='text-align: center; color: #2E86C1;'>🗑️ Smart Garbage Classifier</h1>")
+    gr.Markdown("<p style='text-align: center;'>Upload or capture a trash image. The AI will predict if it's cardboard, plastic, glass, paper, metal, or trash.</p>")
 
     with gr.Row():
-        with gr.Column(scale=1):
-            image_input = gr.Image(label="📸 Upload Trash Image", type="numpy", image_mode="RGB")
-            submit_button = gr.Button("🚀 Classify", elem_id="submit-button")
-        with gr.Column(scale=2):
-            result_label = gr.Label(label="🔖 Predicted Class")
-            confidence_text = gr.Text(label="📊 Confidence of Top Class")
-            confidence_bar = gr.HighlightedText(label="📌 Confidence Breakdown")
+        with gr.Column():
+            input_img = gr.Image(type="pil", label="📸 Upload Image")
+            predict_btn = gr.Button("🔍 Classify")
+        with gr.Column():
+            output_label = gr.Label(num_top_classes=3, label="🧠 Prediction (Top 3 Classes)")
 
-    # Logic for updating UI
-    def predict_and_format(image):
-        predicted_class, confidence, class_confidence = classify_image(image)
-        formatted = [(label, f"{conf:.2%}") for label, conf in class_confidence.items()]
-        highlighted = [(label, conf, "highlight" if label == predicted_class else None) for label, conf in formatted]
-        return predicted_class, confidence, highlighted
+    predict_btn.click(fn=predict_image, inputs=input_img, outputs=output_label)
 
-    submit_button.click(
-        fn=predict_and_format,
-        inputs=image_input,
-        outputs=[result_label, confidence_text, confidence_bar]
+    gr.Examples(
+        examples=examples,
+        inputs=input_img,
+        outputs=output_label,
+        label="🎯 Try with Example Images"
     )
 
-    gr.Markdown(
-        """
-        <div style='text-align: center; margin-top: 30px;'>
-            <p style='font-size: 1em; color: #999;'>🛠 Tip: Use clear images for better classification accuracy</p>
-            <p style='font-size: 0.9em; color: #ccc;'>© 2025 Trash Classifier AI</p>
-        </div>
-        """,
-    )
+    gr.Markdown("<footer style='text-align: center; color: gray;'>Built with  using TensorFlow + Gradio</footer>")
 
-demo.launch()
+demo.launch(debug=True)
 
 ```
 
