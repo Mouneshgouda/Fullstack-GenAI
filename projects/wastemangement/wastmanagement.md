@@ -67,7 +67,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
 
 demo.launch()
 
-```python
+```
 
 
 
