@@ -65,9 +65,46 @@ demo.launch(debug=True)
 
 ```
 
+## Gradio 2
 
+```python
 
+import gradio as gr
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.utils import load_img, img_to_array
 
+model = tf.keras.models.load_model('/content/modelnew.h5')
+
+labels = {
+    0: 'cardboard',
+    1: 'glass',
+    2: 'metal',
+    3: 'paper',
+    4: 'plastic',
+    5: 'trash'
+}
+
+def predict_image(img):
+    img = img.resize((300, 300))
+    img_array = img_to_array(img) / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
+
+    prediction = model.predict(img_array)[0]
+    predicted_class = labels[np.argmax(prediction)]
+    confidence = round(100 * np.max(prediction), 2)
+
+    return {labels[i]: float(prediction[i]) for i in range(len(labels))}
+
+interface = gr.Interface(
+    fn=predict_image,
+    inputs=gr.Image(type="pil", label="Upload Trash Image"),
+    outputs=gr.Label(num_top_classes=6, label="Predicted Class (Top 3)"),
+    title="Smart Garbage Classifier",
+    description="Upload an image of trash (cardboard, plastic, glass, paper, metal, trash) to classify it."
+)
+interface.launch(debug=True)
+```
 
 
 
