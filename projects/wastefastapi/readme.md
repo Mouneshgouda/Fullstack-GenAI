@@ -1,3 +1,91 @@
+## Fastapi and streamlit
+### main.py
+
+```python
+from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+from tensorflow.keras.models import load_model
+from PIL import Image
+import numpy as np
+import io
+
+app = FastAPI()
+
+# Allow Streamlit frontend (running on localhost:8501)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For production: specify Streamlit origin
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+# Load model
+model = load_model("modelnew.h5")
+
+labels = {
+    0: "cardboard",
+    1: "glass",
+    2: "metal",
+    3: "paper",
+    4: "plastic",
+    5: "trash"
+}
+
+def preprocess(img: Image.Image):
+    img = img.resize((300, 300))
+    img_array = np.array(img) / 255.0
+    return img_array[np.newaxis, ...]
+
+@app.post("/predict/")
+async def predict(file: UploadFile = File(...)):
+    contents = await file.read()
+    image = Image.open(io.BytesIO(contents)).convert("RGB")
+    processed = preprocess(image)
+    prediction = model.predict(processed)
+    class_index = int(np.argmax(prediction[0]))
+    confidence = float(np.max(prediction[0])) * 100
+
+    return {
+        "predicted_class": labels[class_index],
+        "confidence": round(confidence, 2)
+    }
+```
+
+## app.py
+
+```python
+
+import streamlit as st
+import requests
+from PIL import Image
+import io
+
+# Title
+st.title("Smart Garbage Segregation")
+
+# Upload file
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+if uploaded_file:
+    image = Image.open(uploaded_file).convert("RGB")
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+
+    if st.button("Predict"):
+        # Send image to FastAPI backend
+        files = {"file": uploaded_file.getvalue()}
+        response = requests.post("http://localhost:8000/predict/", files=files)
+
+        if response.status_code == 200:
+            result = response.json()
+            st.subheader("Prediction Result")
+            st.write(f"*Predicted Class:* {result['predicted_class']}")
+            st.write(f"*Confidence:* {result['confidence']}%")
+        else:
+            st.error("Prediction failed. Check FastAPI server.")
+```
+
+
+
 ## Index.html
 ```python
 <!DOCTYPE html>
