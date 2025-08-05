@@ -33,7 +33,7 @@ An intelligent tutoring system that adapts to individual student needs using Goo
 
 ```
 ├── app.py                  # Main application entry point
-├── pages/                  # Application pages
+├──                   # Application pages
 │   ├── Home.py            # Main learning interface
 │   ├── Performance.py     # Progress tracking view
 │   └── Settings.py        # User settings management
@@ -148,3 +148,4 @@ MIT License - Feel free to use and modify for your needs.
 - Built with Streamlit
 - Powered by Google Gemini AI
 - Educational content aligned with standard curricula
+
