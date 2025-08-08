@@ -250,7 +250,7 @@ from google.generativeai import GenerativeModel
 from transformers import pipeline
 
 # Configure your Gemini key here
-genai.configure(api_key="AIzaSyB_V3DqJiHPzsbklDmkQQNnSORGPTNnNyo")
+genai.configure(api_key="user api key")
 model = GenerativeModel("gemini-2.0-flash")
 
 sentiment_model = pipeline("sentiment-analysis")
