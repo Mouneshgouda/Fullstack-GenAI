@@ -164,7 +164,7 @@ if selected == "Hypo-Thyroid Prediction":
 # FASTAPI BACKEND - main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from a import generate_health_insight, analyze_with_huggingface
+from ai_engine import generate_health_insight, analyze_with_huggingface
 
 app = FastAPI()
 
